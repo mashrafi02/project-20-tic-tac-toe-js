@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.game-title{
+    font-size: 50px;
+    margin: 30px 0;
+}
+
+
+.cross{
+    height: 310px;
+    width: 310px;
+    position: absolute;
+    top: 117px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+    transition: transform linear 0.2s;
+}
+
+.cross .diagonal-1{
+    width: 7px;
+    height: 425px;
+    background: red;
+    transform: rotate(45deg);
+}
+
+.cross .diagonal-2{
+    width: 7px;
+    height: 410px;
+    background: red;
+    transform: rotate(-45deg);
+}
+
+.game-board{
+    background-color:aquamarine;
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+.cell{
+    height: 100px;
+    width: 100px;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cell:hover{
+    background-color: #b9b9b9;
+}
+
+.status{
+    font-size: 40px;
+    margin-bottom: 30px;
+    display: none;
+}
+
+button{
+    display: inline-block;
+    padding: 10px;
+    background-color: greenyellow;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color linear 0.1s;
+}
+
+button:hover{
+    background-color: rgb(143, 190, 49);
+}
+
+button:active{
+    background-color: rgb(178, 236, 61);
+}
+
+.reset{
+    display: none;
+}
+
+.winning-cells{
+    background-color: green;
+}
