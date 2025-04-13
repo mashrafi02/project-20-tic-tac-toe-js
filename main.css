@@ -16,31 +16,48 @@ body{
     margin: 30px 0;
 }
 
+.cell[data-index='1'],.cell[data-index='3'],.cell[data-index='4']{
+    position: relative;
+}
 
-.cross{
+.lineV{
+    width: 7px;
     height: 310px;
-    width: 310px;
+    border-radius: 5px;
+    background-color: black;
     position: absolute;
-    top: 117px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     transform: scale(0);
     transition: transform linear 0.2s;
 }
 
-.cross .diagonal-1{
-    width: 7px;
-    height: 425px;
-    background: red;
-    transform: rotate(45deg);
+.lineH{
+    width: 310px;
+    height: 7px;
+    border-radius: 5px;
+    background-color: black;
+    position: absolute;
+    transform: scale(0);
+    transition: transform linear 0.2s;
 }
 
-.cross .diagonal-2{
+.line-DRB{
     width: 7px;
-    height: 410px;
-    background: red;
-    transform: rotate(-45deg);
+    height: 420px;
+    border-radius: 5px;
+    background-color: black;
+    position: absolute;
+    transform: rotate(45deg) scale(0);
+    transition: transform ease 0.2s;
+}
+
+.line-DLB{
+    width: 7px;
+    height: 420px;
+    border-radius: 5px;
+    background-color: black;
+    position: absolute;
+    transform: rotate(-45deg) scale(0);
+    transition: transform ease 0.2s;
 }
 
 .game-board{
@@ -97,5 +114,9 @@ button:active{
 }
 
 .winning-cells{
-    background-color: green;
+    background-color: rgb(180, 241, 57);
+}
+
+.winning-cells:hover{
+    background-color: rgb(180, 241, 57);
 }
