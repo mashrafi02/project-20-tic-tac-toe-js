@@ -9,11 +9,13 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: #f0f0f0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
 }
 
 .game-title{
     font-size: 50px;
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .cell[data-index='1'],.cell[data-index='3'],.cell[data-index='4']{
@@ -65,7 +67,7 @@ body{
     display: grid;
     grid-template-columns: repeat(3, 100px);
     gap: 5px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .cell{
@@ -86,7 +88,7 @@ body{
 
 .status{
     font-size: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     display: none;
 }
 
