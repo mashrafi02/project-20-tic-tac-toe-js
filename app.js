@@ -121,48 +121,73 @@ function multiplayerComputer(){
 }
 
 function computerTurn(cells){
-    let isEmpty = board_values.some(val => val == "");
-    input();
-    function input(){
-        if (!isEmpty){
+    let rightMove = getRightMove()
+
+    if (rightMove != null){
+        board_values[rightMove] = "O";
+        cells[rightMove].textContent = "O"
+
+        if (checkWinner()){
+            winningCombo.forEach(combo => {
+                cells[combo].classList.add('winning-cells')
+            })
+            drawLine(winningCombo, cells);
+            playerStatus.textContent = `Computer Win`;
+            isActive = false;
+            resetBtn.style.display = 'inline-block';
             return
         }
-        setTimeout(()=>{
-            randomIndex = Math.floor(Math.random() * 9 )
-            if(board_values[randomIndex] == ""){
-                board_values[randomIndex] = "O";
-                cells[randomIndex].textContent = "O"
+    
+        if(checkDraw()){
+            playerStatus.textContent = "It's a Draw";
+            isActive = false;
+            resetBtn.style.display = 'inline-block';
+            return
+        }
 
-                if (checkWinner()){
-                    winningCombo.forEach(combo => {
-                        cells[combo].classList.add('winning-cells')
-                    })
-                    drawLine(winningCombo, cells);
-                    playerStatus.textContent = `Computer Win`;
-                    isActive = false;
-                    resetBtn.style.display = 'inline-block';
-                    return
-                }
-            
-                if(checkDraw()){
-                    playerStatus.textContent = "It's a Draw";
-                    isActive = false;
-                    resetBtn.style.display = 'inline-block';
-                    return
-                }
-
-                isEmpty = false;
-                return
-            }
-            input()
-        },50)
+        whosTurn = whosTurn === 'Your'? "Computer's" : 'Your';
+        playerStatus.textContent = `${whosTurn} turn`;
     }
-    whosTurn = whosTurn === 'Your'? "Computer's" : 'Your';
-    playerStatus.textContent = `${whosTurn} turn`;
 }
 // ########################################### Playing with Computer end here ###################################################
 
+
 // ########################################## necessary functions #############################################
+function getRightMove(){
+    // move to win
+    for(let combo of winningCombination){
+        let [a,b,c] = combo;
+        let values = [board_values[a], board_values[b], board_values[c]];
+        if(values.filter(val => val === "O").length > 1  && values.includes("")){
+            return combo[values.indexOf("")]
+        }
+    }
+
+    // move to block the win of user
+    for(let combo of winningCombination){
+        let [a,b,c] = combo;
+        let values = [board_values[a], board_values[b], board_values[c]];
+        if(values.filter(val => val === "X").length > 1  && values.includes("")){
+            return combo[values.indexOf("")]
+        }
+    }
+
+    // if nothing happens in those 2 then pick a random move
+    let indexToPick = board_values.map((val,index) => val == ""? index : null)
+                      .filter(val => val != null);
+    if(board_values[4] == ""){
+        return 4
+    }
+    else if(indexToPick){
+        let randomIndex = Math.floor(Math.random() * indexToPick.length);
+        return indexToPick[randomIndex]
+    }
+
+    return null
+
+}
+
+
 function checkWinner(){
     return winningCombination.some(combo => {
         winningCombo = [...combo];
